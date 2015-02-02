@@ -1,0 +1,21 @@
+﻿@using Plivo.API;
+@using RestSharp; 
+@{
+    // Store the endpoint point id from the URL
+    var endid = Request.QueryString["endpoint_id"];
+    
+    string auth_id = "Your AUTH_ID";
+    string auth_token = "Your AUTH_TOKEN";
+
+    RestAPI p = new RestAPI(auth_id, auth_token);
+
+    System.Diagnostics.Debug.WriteLine("Deleting the Endpoint");
+    
+    // Delete the endpoint
+    IRestResponse<GenericResponse> response = p.delete_endpoint(new Dictionary<string, string>()
+        {
+            {"endpoint_id", endid}
+        });
+    
+    System.Diagnostics.Debug.WriteLine("Deleted"); 
+}
